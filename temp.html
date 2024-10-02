@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Temperature Conversion</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(135deg, #81c784, #aed581);
+            color: #333;
+        }
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+            max-width: 400px;
+            text-align: center;
+        }
+        input, select, button {
+            padding: 12px;
+            margin: 10px 0;
+            font-size: 16px;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        input:focus, select:focus {
+            outline: none;
+            border-color: #81c784;
+            box-shadow: 0 0 5px rgba(129, 199, 132, 0.5);
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #1c9022;
+        }
+        h2 {
+            margin-bottom: 20px;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        #result {
+            margin-top: 20px;
+            font-size: 20px;
+            font-weight: bold;
+            color: #186b1c;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Temperature Conversion Program</h2>
+    <label for="temperature">Enter Temperature Value:</label>
+    <input type="number" id="temperature" placeholder="Temperature">
+    
+    <label for="fromScale">Convert From:</label>
+    <select id="fromScale">
+        <option value="C">Celsius (C)</option>
+        <option value="F">Fahrenheit (F)</option>
+        <option value="K">Kelvin (K)</option>
+    </select>
+    
+    <label for="toScale">Convert To:</label>
+    <select id="toScale">
+        <option value="C">Celsius (C)</option>
+        <option value="F">Fahrenheit (F)</option>
+        <option value="K">Kelvin (K)</option>
+    </select>
+    
+    <button onclick="convertTemperature()">Convert</button>
+    
+    <p id="result"></p>
+</div>
+
+<script>
+    function celsiusToFahrenheit(celsius) {
+        return (celsius * 9/5) + 32;
+    }
+
+    function fahrenheitToCelsius(fahrenheit) {
+        return (fahrenheit - 32) * 5/9;
+    }
+
+    function celsiusToKelvin(celsius) {
+        return celsius + 273.15;
+    }
+
+    function kelvinToCelsius(kelvin) {
+        return kelvin - 273.15;
+    }
+
+    function fahrenheitToKelvin(fahrenheit) {
+        return (fahrenheit - 32) * 5/9 + 273.15;
+    }
+
+    function kelvinToFahrenheit(kelvin) {
+        return (kelvin - 273.15) * 9/5 + 32;
+    }
+
+    function convertTemperature() {
+        let value = parseFloat(document.getElementById("temperature").value);
+        let fromScale = document.getElementById("fromScale").value;
+        let toScale = document.getElementById("toScale").value;
+        let result = document.getElementById("result");
+        let convertedValue;
+
+        if (isNaN(value)) {
+            result.innerHTML = "Please enter a valid temperature value.";
+            return;
+        }
+
+        if (fromScale === "C" && toScale === "F") {
+            convertedValue = celsiusToFahrenheit(value);
+        } else if (fromScale === "C" && toScale === "K") {
+            convertedValue = celsiusToKelvin(value);
+        } else if (fromScale === "F" && toScale === "C") {
+            convertedValue = fahrenheitToCelsius(value);
+        } else if (fromScale === "F" && toScale === "K") {
+            convertedValue = fahrenheitToKelvin(value);
+        } else if (fromScale === "K" && toScale === "C") {
+            convertedValue = kelvinToCelsius(value);
+        } else if (fromScale === "K" && toScale === "F") {
+            convertedValue = kelvinToFahrenheit(value);
+        } else {
+            result.innerHTML = "Invalid conversion scales.";
+            return;
+        }
+
+        result.innerHTML = `${value}°${fromScale} is equal to ${convertedValue.toFixed(2)}°${toScale}`;
+    }
+</script>
+
+</body>
+</html>
