@@ -1,0 +1,55 @@
+function celsiusToFahrenheit(celsius) {
+    return (celsius * 9 / 5) + 32;
+}
+
+function fahrenheitToCelsius(fahrenheit) {
+    return (fahrenheit - 32) * 5 / 9;
+}
+
+function celsiusToKelvin(celsius) {
+    return celsius + 273.15;
+}
+
+function kelvinToCelsius(kelvin) {
+    return kelvin - 273.15;
+}
+
+function fahrenheitToKelvin(fahrenheit) {
+    return (fahrenheit - 32) * 5 / 9 + 273.15;
+}
+
+function kelvinToFahrenheit(kelvin) {
+    return (kelvin - 273.15) * 9 / 5 + 32;
+}
+
+function convertTemperature() {
+    let value = parseFloat(document.getElementById("temperature").value);
+    let fromScale = document.getElementById("fromScale").value;
+    let toScale = document.getElementById("toScale").value;
+    let result = document.getElementById("result");
+    let convertedValue;
+
+    if (isNaN(value)) {
+        result.innerHTML = "Please enter a valid temperature value.";
+        return;
+    }
+
+    if (fromScale === "C" && toScale === "F") {
+        convertedValue = celsiusToFahrenheit(value);
+    } else if (fromScale === "C" && toScale === "K") {
+        convertedValue = celsiusToKelvin(value);
+    } else if (fromScale === "F" && toScale === "C") {
+        convertedValue = fahrenheitToCelsius(value);
+    } else if (fromScale === "F" && toScale === "K") {
+        convertedValue = fahrenheitToKelvin(value);
+    } else if (fromScale === "K" && toScale === "C") {
+        convertedValue = kelvinToCelsius(value);
+    } else if (fromScale === "K" && toScale === "F") {
+        convertedValue = kelvinToFahrenheit(value);
+    } else {
+        result.innerHTML = "Invalid conversion scales.";
+        return;
+    }
+
+    result.innerHTML = `${value}°${fromScale} is equal to ${convertedValue.toFixed(2)}°${toScale}`;
+}
