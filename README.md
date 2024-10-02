@@ -2,4 +2,4 @@ Temperature Converter App: A simple GUI-based temperature converter built with P
 
 HTML: Defines the structure of the page, such as headings, labels, input fields, and buttons.
 JavaScript: Handles the logic for temperature conversion, including the functions that perform the calculations and update the page with results.
-CSS: Although not explicitly in this code, there is a basic style applied through HTML elements (e.g., <div class="container">),and CSS could be applied to style the appearance.
+CSS: Although not explicitly in this code, there is a basic style applied through HTML elements and CSS could be applied to style the appearance.
